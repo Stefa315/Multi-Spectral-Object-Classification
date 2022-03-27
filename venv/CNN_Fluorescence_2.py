@@ -124,13 +124,6 @@ model = models.Sequential([
 
 ])
 
-# feature_extractor = keras.Model(
-#     inputs=model.inputs,
-#     outputs=model.get_layer(name="dense_map").output,)
-#
-# features = feature_extractor(train_X[0:3])
-# print("FEatures",len(features),features)
-
 model.build(input_shape=input_shape_model)
 
 print("[INFO] compiling model...")
@@ -174,13 +167,6 @@ loaded_model = model_from_json(loaded_model_json)
 # load weights into new model
 loaded_model.load_weights("../venv/models_saved_json_fluorescence_2/model_{}/model_weights.h5".format(model_version))
 print("Loaded model from disk")
-
-
-# weights="weight-CNN.hdf5"
-# model.save_weights(weights,overwrite=True)
-#
-# model_version = max([int(i) for i in os.listdir("../saved_models")+[0]])+1
-# model.save(f"../saved_models/{model_version}")
 
 def predict(model,img):
     img_array = (images[i].numpy())
