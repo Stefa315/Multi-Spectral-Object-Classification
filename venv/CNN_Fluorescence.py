@@ -47,22 +47,6 @@ class_names = dataset_2.class_names
 train_ds , val_ds , test_ds = get_dataset.get_dataset_partitions(dataset_2)
 print("TRAIN LENGTH",len(train_ds) , len(val_ds),len(test_ds))
 
-# train_ex = train_ds.take(256)
-# train_X=np.empty([257*8,256,256,3])
-# train_Y = np.empty([258*8])
-# po=0
-# po_2=0
-# for idx,sample in enumerate(train_ex):
-#         # print("IIII",idx,sample)
-#         for po in range(len(sample[0])):
-#             po_2+=1
-#             train_X[po_2] =  np.array(sample[0][po]).copy()
-#             train_Y[po_2] = np.array(sample[1][po]).copy()
-#             po+=1
-#         po=0
-
-
-# print("IMAGE",len(train_X),train_X.shape)
 
 resize_and_rescale_layer = tf.keras.Sequential([
     layers.experimental.preprocessing.Resizing(IMAGE_SIZE,IMAGE_SIZE),
@@ -165,12 +149,6 @@ loaded_model = model_from_json(loaded_model_json)
 loaded_model.load_weights("../venv/models_saved_json_fluorescence/model_{}/model_weights.h5".format(model_version))
 print("Loaded model from disk")
 
-
-# weights="weight-CNN.hdf5"
-# model.save_weights(weights,overwrite=True)
-#
-# model_version = max([int(i) for i in os.listdir("../saved_models")+[0]])+1
-# model.save(f"../saved_models/{model_version}")
 
 def predict(model,img):
     img_array = (images[i].numpy())
